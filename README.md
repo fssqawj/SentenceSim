@@ -34,7 +34,7 @@
  
  sdp语法分析文件，调用哈工大LTP API结果：
  ```
- http://api.ltp-cloud.com/analysis/?api_key=D2c6z4G3dUwnaK1pWxONxdSPsAvEMZFJruEpyxNV&pattern=sdp&format=plain&text=网上交易为什么要选择 “绿色通道”？:
+ http://api.ltp-cloud.com/analysis/?api_key=yourKey&pattern=sdp&format=plain&text=网上交易为什么要选择 “绿色通道”？:
  网上_0 交易_1 Agt
  交易_1 -1 Root
  为什么_2 选择_4 mTone
