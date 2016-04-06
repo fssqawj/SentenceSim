@@ -53,10 +53,9 @@
 ## 引用
 1. [知网](http://www.keenage.com/html/c_index.html)
 
-2. https://github.com/daishengdong/WordSimilarity](https://github.com/daishengdong/WordSimilarity)
+2. [https://github.com/daishengdong/WordSimilarity](https://github.com/daishengdong/WordSimilarity)
 
-3. [Mikolov, T.; Chen, K.; Corrado, G.; and Dean, J. 2013a.Efficient estimation of 
-  word representations in vector space.Proceedings of ICLR.](http://arxiv.org/abs/1301.3781)
+3. [Mikolov, T.; Chen, K.; Corrado, G.; and Dean, J. 2013a.Efficient estimation of word representations in vector space.Proceedings of ICLR.](http://arxiv.org/abs/1301.3781)
 
 4. [http://www.ltp-cloud.com/](http://www.ltp-cloud.com/)
 
