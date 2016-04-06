@@ -47,4 +47,20 @@
  ？_9 交易_1 mPunc
  ```
 ## 更新
-* 
+* 2016/1/15 上传SentenceBaseWord2vec项目
+* 2016/4/6 上传此项目，此项目后续更新
+
+## 引用
+1. [知网](http://www.keenage.com/html/c_index.html)
+
+2. https://github.com/daishengdong/WordSimilarity](https://github.com/daishengdong/WordSimilarity)
+
+3. [Mikolov, T.; Chen, K.; Corrado, G.; and Dean, J. 2013a.Efficient estimation of 
+  word representations in vector space.Proceedings of ICLR.](http://arxiv.org/abs/1301.3781)
+
+4. [http://www.ltp-cloud.com/](http://www.ltp-cloud.com/)
+
+5. [http://www.52nlp.cn/中英文维基百科语料上的word2vec实验/comment-page-1](4. http://www.52nlp.cn/中英文维基百科语料上的word2vec实验/comment-page-1)
+
+## Connect
+ICA fssqawj fssqawj@gmail.com
