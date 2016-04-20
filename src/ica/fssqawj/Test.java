@@ -31,8 +31,8 @@ public class Test {
 			//System.out.println(ToAnalysis.parse("紫金是不是要手动赎回"));
 		}
 		*/
-		System.out.println(ToAnalysis.parse("客户号定义"));
-		System.out.println(ToAnalysis.parse("紫金是不是要手动赎回"));
+		System.out.println(ToAnalysis.parse("客户 号 定义"));
+		System.out.println(ToAnalysis.parse("紫金 是 不 是 要 手动 赎回"));
 		System.out.println(ToAnalysis.parse("创业板都是些什么内容啊"));
 		System.out.println(ToAnalysis.parse("所有用户度可以开设股权质押式回购嘛"));
 	}

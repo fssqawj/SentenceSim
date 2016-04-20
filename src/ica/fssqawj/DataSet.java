@@ -39,13 +39,15 @@ public class DataSet {
 		
 		bufferedReader = new BufferedReader(new FileReader(trainFile));
 		
+		//BufferedWriter writer = new BufferedWriter(new FileWriter(new File("train.txt")));
+		
 		String temp = "";
 		
         int hcnt = 1;
         int rcnt = 1;
         int tcnt = 1;
         
-        
+        //int idx = 0;
         while((temp = bufferedReader.readLine()) != null){
             String[] qtem = temp.split("\t####\t");
             //System.out.println(temp);
@@ -85,12 +87,16 @@ public class DataSet {
                 tem.add(rid);
                 matchQuestion.put(hid, tem);
             }
-
+            //idx ++;
             if(Math.random() < 0.05){
                 iSet.add(hq);
                 kSet.add(rq);
+                //writer.write(idx + "\t" + hq + "\t" + rq + "\t1.0\tNEUTRAL\n");
+                
+                
                 tcnt = tcnt + 1;
             }
+            
         }
         bufferedReader.close();
         System.out.println("DataSet Init Done.");

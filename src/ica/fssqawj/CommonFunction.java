@@ -149,7 +149,7 @@ public class CommonFunction {
         for(Term key : iTerm){
             String tem = key.toString();
             String[] ary = tem.split("/");
-            if(ary.length > 1 && (ary[1].contains("n") || ary[1].contains("v") || ary[1].contains("mw"))){
+            if(ary.length > 1){
             //if(ary.length > 1){
             //System.out.println(ary[0]);
             	//if(ary[1].contains("mw"))iRes.add(ary[0] + "mw");
