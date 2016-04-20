@@ -5,7 +5,7 @@
 ## 当前版本
  v1.1
 ## 主要内容
- 给出了基于知网、传统词向量、word2vec以及语义依存分析的短问句相似度算法，并根据实验结果分析了不同方法的优缺点。基于传统词向量的one-hot向量表示方法没有考虑问句中的语义信息，在计算效果上存在一定局限性，由于知网专业领域词汇的收录不全，也不能在此数据集上取得很好效果。通过word2vec方法训练中文wiki数据以及结合哈工大LTP平台的语义依存分析，以及结合专业领域的词汇表，能够取得不错的效果。使用Stanford LSTM开源代码，实现在中文文本上的相似读计算
+ 给出了基于知网、传统词向量、word2vec以及语义依存分析的短问句相似度算法，并根据实验结果分析了不同方法的优缺点。基于传统词向量的one-hot向量表示方法没有考虑问句中的语义信息，在计算效果上存在一定局限性，由于知网专业领域词汇的收录不全，也不能在此数据集上取得很好效果。通过word2vec方法训练中文wiki数据以及结合哈工大LTP平台的语义依存分析，以及结合专业领域的词汇表，能够取得不错的效果。使用Stanford LSTM开源代码，实现在中文文本上的相似读计算，取得比word2vec更好的效果
 ## 代码应用
  `Sensim.java` 是整个项目的入口，在main函数里面可以配置数据文件目录，以及词向量文件、sdp分析结果文件。
  ``` java
@@ -20,8 +20,26 @@
  * word2vec -> 应用word2vec训练的Wiki词向量
  * sdp -> 应用哈工大的sdp语法分析
  * word2vec-sdp -> 两种方法融合
- 第二个参数是确定候选集的大小，一般可取1,3,5,10
 
+第二个参数是确定候选集的大小，一般可取1,3,5,10
+
+
+_ _ _
+从百度网盘 [http://pan.baidu.com/s/1c1UyEJY](http://pan.baidu.com/s/1c1UyEJY) 下载data文件并解压到根目录下，data文件夹下包含glove词向量文件（中文词向量文件已经预处理好torch需要的格式）、finacial中文金融领域问答数据。若需要更改train、dev和test内容，可清空finacial文件下内容，然后在该目录下按如下格式生成三个文件train.txt、dev.txt、test.txt
+``` lua
+8	什么 是 市值 申购	市值 申购 的 服务 有 哪些	1.0	NEUTRAL
+25	什么 是 港股 直 通车	我 不 是 很 清楚 你们 的 港股 直 通车 的 情况 能 说明 一下 吗	1.0	NEUTRAL
+```
+用 '\t' 分隔第一列ID，第二列分词之后的第一个问句（空格分隔），第三列为第二个问句，第四列为相似读（0或1），做后一列在本实验中没有实际用途。然后运行scripts/preprocess-finacial.py, 对数据文件进行预处理。
+确保机器环境能够运行touch/lua（https://github.com/torch/torch7）， 并安装LSTM所需要的package（https://github.com/stanfordnlp/treelstm）， 运行
+``` lua
+th relatedness/main.lua --model lstm --epochs <num_epochs>
+```
+可在predictions文件夹下生成对test数据的相似读预测分值。使用eval/precision.py评测结果（如果test有打分的话，在data/finacial/test/sim.txt） 输入的第一个参数是预测文件， 第二个参数是sim.txt, 第三个参数是eps值（小于eps判定为不相似，大于eps判定为相似）。
+
+### 中文修改
+由于本项目是在LSTM源码上进行的修改，存在数据集不同，分类方式不同的问题，主要改动的地方是relatedness/main.lua，LSTMSim.lua更改分类数目，及解决中文上的bug问题。LSTM算法没有用到句子的语法数信息（虽然parse过了），data/finacial/[train|test|dev]下的.parent是没有实际意义的。
+在此实验中（测试集中正负样本比例在5：3）LSTM方法的准确率达到了0.87， 而word2vec的准确率在0.61，提升效果还是比较显著的。
 ## 数据格式
  需要计算相似度的两个问句在一行中用\t####\t分隔，corpus_utf8_del.txt:
  ```
@@ -46,6 +64,7 @@
  ”_8 通道_7 mPunc
  ？_9 交易_1 mPunc
  ```
+LSTM的训练和测试文件如前一节所提。
 ## 更新
 * 2016/1/15 上传SentenceBaseWord2vec项目
 * 2016/4/6 上传此项目，此项目后续更新
