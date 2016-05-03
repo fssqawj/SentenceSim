@@ -7,7 +7,11 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import ica.fssqawj.*;
 
 public class Gen {
@@ -25,31 +29,38 @@ public class Gen {
 		String pre = "";
 		String predev = "";
 		String pretest = "";
+		Set<String> iSet = new HashSet<String>();
+		
+		while((temp = bufferedReader.readLine()) != null){
+			iSet.add(temp);
+		}
+		bufferedReader.close();
+		bufferedReader = new BufferedReader(new FileReader(trainFile));
 		while((temp = bufferedReader.readLine()) != null){
 			String[] token = temp.split("\t####\t");
 			double t = Math.random();
-			if(t < 0.05)writer.write(idx + "\t" + change(token[0]) + "\t" + change(token[1]) + "\t1.0\tNEUTRAL\n");
-			else if(t >= 0.05 && t < 0.1){
+			if(t < 0.2)writer.write(idx + "\t" + change(token[0]) + "\t" + change(token[1]) + "\t1.0\tNEUTRAL\n");
+			else if(t >= 0.2 && t < 0.3){
 				writerdev.write(idx + "\t" + change(token[0]) + "\t" + change(token[1]) + "\t1.0\tNEUTRAL\n");
 			}
-			else if(t >= 0.15 && t < 0.2){
+			else if(t >= 0.3 && t < 0.45){
 				writertest.write(idx + "\t" + change(token[0]) + "\t" + change(token[1]) + "\t1.0\tNEUTRAL\n");
 			}
 			idx ++;
-			if(idx % 50 == 27){
-				if(pre != ""){
+			if(idx % 30 == 27){
+				if(pre != ""&& !iSet.contains(token[0] + "\t####\t" + pre)){
 					writer.write(idx + "\t" + change(token[0]) + "\t" + change(pre) + "\t0.0\tNEUTRAL\n");
 				}
 				pre = token[1];
 			}
-			if(idx % 50 == 37){
-				if(predev != ""){
+			if(idx % 30 == 7){
+				if(predev != ""&& !iSet.contains(token[0] + "\t####\t" + predev)){
 					writerdev.write(idx + "\t" + change(token[0]) + "\t" + change(predev) + "\t0.0\tNEUTRAL\n");
 				}
 				predev = token[1];
 			}
-			if(idx % 50 == 47){
-				if(pretest != ""){
+			if(idx % 30 == 17){
+				if(pretest != "" && !iSet.contains(token[0] + "\t####\t" + pretest)){
 					writertest.write(idx + "\t" + change(token[0]) + "\t" + change(pretest) + "\t0.0\tNEUTRAL\n");
 				}
 				pretest = token[1];

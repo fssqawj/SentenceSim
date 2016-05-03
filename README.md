@@ -39,7 +39,7 @@ th relatedness/main.lua --model lstm --epochs <num_epochs>
 
 ### 中文修改
 由于本项目是在LSTM源码上进行的修改，存在数据集不同，分类方式不同的问题，主要改动的地方是relatedness/main.lua，LSTMSim.lua更改分类数目，及解决中文上的bug问题。LSTM算法没有用到句子的语法数信息（虽然parse过了），data/finacial/[train|test|dev]下的.parent是没有实际意义的。
-在此实验中（测试集中正负样本比例在5：3）LSTM方法的准确率达到了0.87， 而word2vec的准确率在0.61，提升效果还是比较显著的。
+在此实验中（测试集中正负样本比例在7：1）LSTM方法的准确率达到了0.93， 而word2vec的准确率在0.90
 ## 数据格式
  需要计算相似度的两个问句在一行中用\t####\t分隔，corpus_utf8_del.txt:
  ```

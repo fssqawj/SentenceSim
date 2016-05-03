@@ -34,7 +34,7 @@ public class Genpredict {
 		writer.flush();
 		writer.close();
 		reader.close();
-	}
+	}	
 	
 	public static void nomorlize(List<Double> x){
 		double maxx = -1e10, minn = 1e10;
