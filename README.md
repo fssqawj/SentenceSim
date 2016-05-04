@@ -25,7 +25,7 @@
 
 
 _ _ _
-从百度网盘 [http://pan.baidu.com/s/1c1UyEJY](http://pan.baidu.com/s/1c1UyEJY) 下载data文件并解压到treelstm目录下，data文件夹下包含glove词向量文件（中文词向量文件已经预处理好torch需要的格式）、finacial中文金融领域问答数据。从百度网盘 []() 下载stanford-nlp文件，并将解压出来的两个文件(stanford-parser, stanford-tagger)夹放到treelstm/lib目录下。若需要更改train、dev和test内容，可清空finacial文件下内容，然后在该目录下按如下格式生成三个文件train.txt、dev.txt、test.txt
+从百度网盘 [http://pan.baidu.com/s/1c1UyEJY](http://pan.baidu.com/s/1c1UyEJY) 下载data文件并解压到treelstm目录下，data文件夹下包含glove词向量文件（中文词向量文件已经预处理好torch需要的格式）、finacial中文金融领域问答数据。从百度网盘 [http://pan.baidu.com/s/1pLCcpOR](http://pan.baidu.com/s/1pLCcpOR) 下载stanford-nlp文件，并将解压出来的两个文件(stanford-parser, stanford-tagger)夹放到treelstm/lib目录下。若需要更改train、dev和test内容，可清空finacial文件下内容，然后在该目录下按如下格式生成三个文件train.txt、dev.txt、test.txt
 ``` lua
 8	什么 是 市值 申购	市值 申购 的 服务 有 哪些	1.0	NEUTRAL
 25	什么 是 港股 直 通车	我 不 是 很 清楚 你们 的 港股 直 通车 的 情况 能 说明 一下 吗	1.0	NEUTRAL
