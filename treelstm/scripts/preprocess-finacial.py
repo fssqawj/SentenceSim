@@ -84,7 +84,8 @@ if __name__ == '__main__':
         lib_dir,
         os.path.join(lib_dir, 'stanford-parser/stanford-parser.jar'),
         os.path.join(lib_dir, 'stanford-parser/stanford-parser-3.5.1-models.jar')])
-
+    #    os.path.join(lib_dir, 'stanford-parser/stanford-chinese-corenlp-2016-01-19-models.jar')])
+    print classpath
     # split into separate files
     split(os.path.join(finacial_dir, 'train.txt'), train_dir)
     split(os.path.join(finacial_dir, 'dev.txt'), dev_dir)
