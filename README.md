@@ -31,7 +31,7 @@ _ _ _
 25	什么 是 港股 直 通车	我 不 是 很 清楚 你们 的 港股 直 通车 的 情况 能 说明 一下 吗	1.0	NEUTRAL
 ```
 用 '\t' 分隔第一列ID，第二列分词之后的第一个问句（空格分隔），第三列为第二个问句，第四列为相似读（0或1），做后一列在本实验中没有实际用途。然后运行scripts/preprocess-finacial.py, 对数据文件进行预处理。
-确保机器环境能够运行touch/lua（https://github.com/torch/torch7）， 并安装LSTM所需要的package（https://github.com/stanfordnlp/treelstm）， 运行
+确保机器环境能够运行touch/lua(https://github.com/torch/torch7)， 并安装LSTM所需要的package(https://github.com/stanfordnlp/treelstm)， 运行
 ``` lua
 th relatedness/main.lua --model lstm --epochs <num_epochs>
 ```
