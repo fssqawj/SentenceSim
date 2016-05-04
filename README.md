@@ -25,20 +25,20 @@
 
 
 _ _ _
-从百度网盘 [http://pan.baidu.com/s/1c1UyEJY](http://pan.baidu.com/s/1c1UyEJY) 下载data文件并解压到根目录下，data文件夹下包含glove词向量文件（中文词向量文件已经预处理好torch需要的格式）、finacial中文金融领域问答数据。若需要更改train、dev和test内容，可清空finacial文件下内容，然后在该目录下按如下格式生成三个文件train.txt、dev.txt、test.txt
+从百度网盘 [http://pan.baidu.com/s/1c1UyEJY](http://pan.baidu.com/s/1c1UyEJY) 下载data文件并解压到treelstm目录下，data文件夹下包含glove词向量文件（中文词向量文件已经预处理好torch需要的格式）、finacial中文金融领域问答数据。从百度网盘 []() 下载stanford-nlp文件，并将解压出来的两个文件(stanford-parser, stanford-tagger)夹放到treelstm/lib目录下。若需要更改train、dev和test内容，可清空finacial文件下内容，然后在该目录下按如下格式生成三个文件train.txt、dev.txt、test.txt
 ``` lua
 8	什么 是 市值 申购	市值 申购 的 服务 有 哪些	1.0	NEUTRAL
 25	什么 是 港股 直 通车	我 不 是 很 清楚 你们 的 港股 直 通车 的 情况 能 说明 一下 吗	1.0	NEUTRAL
 ```
-用 '\t' 分隔第一列ID，第二列分词之后的第一个问句（空格分隔），第三列为第二个问句，第四列为相似读（0或1），做后一列在本实验中没有实际用途。然后运行scripts/preprocess-finacial.py, 对数据文件进行预处理。
-确保机器环境能够运行touch/lua(https://github.com/torch/torch7)， 并安装LSTM所需要的package(https://github.com/stanfordnlp/treelstm)， 运行
+用 '\t' 分隔第一列ID，第二列分词之后的第一个问句（空格分隔），第三列为第二个问句，第四列为相似读（0或1），最后一列在本实验中没有实际用途。
+确保机器环境能够运行touch/lua(https://github.com/torch/torch7) ,并安装LSTM所需要的package(https://github.com/stanfordnlp/treelstm) , 可以把train、dev和test文件放到项目的根目录下，然后运行 run.sh， 此脚本作用是编译lib下的java文件， 清空financial目录，并在financial目录下按照特定格式生成数据文件，包括对中文数据的依存分析和token提取， 运行：
 ``` lua
 th relatedness/main.lua --model lstm --epochs <num_epochs>
 ```
 可在predictions文件夹下生成对test数据的相似读预测分值。使用eval/precision.py评测结果（如果test有打分的话，在data/finacial/test/sim.txt） 输入的第一个参数是预测文件， 第二个参数是sim.txt, 第三个参数是eps值（小于eps判定为不相似，大于eps判定为相似）。
 
 ### 中文修改
-由于本项目是在LSTM源码上进行的修改，存在数据集不同，分类方式不同的问题，主要改动的地方是relatedness/main.lua，LSTMSim.lua更改分类数目，及解决中文上的bug问题。LSTM算法没有用到句子的语法数信息（虽然parse过了），data/finacial/[train|test|dev]下的.parent是没有实际意义的。
+由于本项目是在LSTM源码上进行的修改，存在数据集不同，分类方式不同的问题，主要改动的地方是relatedness/main.lua，LSTMSim.lua更改分类数目，及解决中文上的bug问题。LSTM算法没有用到句子的语法树信息（虽然parse过了），data/finacial/[train|test|dev]下的.parent是没有实际意义的。
 在此实验中（测试集中正负样本比例在7：1）LSTM方法的准确率达到了0.93， 而word2vec的准确率在0.90
 ## 数据格式
  需要计算相似度的两个问句在一行中用\t####\t分隔，corpus_utf8_del.txt:
