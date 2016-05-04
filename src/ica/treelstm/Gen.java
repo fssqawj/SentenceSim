@@ -15,7 +15,9 @@ import java.util.Set;
 import ica.fssqawj.*;
 
 public class Gen {
-
+	public static double train = 0.3;
+	public static double dev = 0.5;
+	public static double test = 0.7;
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		File trainFile = new File("corpus_utf8_del.txt");
@@ -39,27 +41,27 @@ public class Gen {
 		while((temp = bufferedReader.readLine()) != null){
 			String[] token = temp.split("\t####\t");
 			double t = Math.random();
-			if(t < 0.2)writer.write(idx + "\t" + change(token[0]) + "\t" + change(token[1]) + "\t1.0\tNEUTRAL\n");
-			else if(t >= 0.2 && t < 0.3){
+			if(t < train)writer.write(idx + "\t" + change(token[0]) + "\t" + change(token[1]) + "\t1.0\tNEUTRAL\n");
+			else if(t >= train && t < dev){
 				writerdev.write(idx + "\t" + change(token[0]) + "\t" + change(token[1]) + "\t1.0\tNEUTRAL\n");
 			}
-			else if(t >= 0.3 && t < 0.45){
+			else if(t >= dev && t < test){
 				writertest.write(idx + "\t" + change(token[0]) + "\t" + change(token[1]) + "\t1.0\tNEUTRAL\n");
 			}
 			idx ++;
-			if(idx % 30 == 27){
+			if(idx % 7 == 2){
 				if(pre != ""&& !iSet.contains(token[0] + "\t####\t" + pre)){
 					writer.write(idx + "\t" + change(token[0]) + "\t" + change(pre) + "\t0.0\tNEUTRAL\n");
 				}
 				pre = token[1];
 			}
-			if(idx % 30 == 7){
+			if(idx % 7 == 4){
 				if(predev != ""&& !iSet.contains(token[0] + "\t####\t" + predev)){
 					writerdev.write(idx + "\t" + change(token[0]) + "\t" + change(predev) + "\t0.0\tNEUTRAL\n");
 				}
 				predev = token[1];
 			}
-			if(idx % 30 == 17){
+			if(idx % 7 == 6){
 				if(pretest != "" && !iSet.contains(token[0] + "\t####\t" + pretest)){
 					writertest.write(idx + "\t" + change(token[0]) + "\t" + change(pretest) + "\t0.0\tNEUTRAL\n");
 				}

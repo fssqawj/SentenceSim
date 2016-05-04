@@ -51,7 +51,7 @@ def split(filepath, dst_dir):
          open(os.path.join(dst_dir, 'b.txt'), 'w') as bfile,  \
          open(os.path.join(dst_dir, 'id.txt'), 'w') as idfile, \
          open(os.path.join(dst_dir, 'sim.txt'), 'w') as simfile:
-            datafile.readline()
+         #   datafile.readline()
             for line in datafile:
                 i, a, b, sim, ent = line.strip().split('\t')
                 idfile.write(i + '\n')
